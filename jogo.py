@@ -1,21 +1,26 @@
-import random
-print("SEJA MUITO BEM VINDO AO JOGO DE ADIVINHAÇÃO")
-numerosecreto = random.randint(1,10)
-tentativas = 0
-max_tentativas = 3 
+from random import randint 
 
+num = randint(1,10)
+tentativas = None
+user_input = None
+dif = int(input("\nDigite a dificuldade que deseja jogar:\n[1]Fácil : 8 Tentativas\n[2]Médio : 5 Tentativas\n[3]Difícil : 3 Tentativas\n\n"))
 
-while tentativas < max_tentativas :
-    palpite = int(input("Tente adivinhar o número entre 1 e 10: "))
-    tentativas += 1 
-    if tentativas == max_tentativas:
-        print("Você perdeu!!O número era." , numerosecreto)
+if dif == 1:
+    tentativas = 8
+elif dif == 2:
+    tentativas = 5
+else:
+    tentativas = 3
+
+for i in range(tentativas):
+    user_input = int(input("Pense em um número e digite : "))
+    if  user_input == num:
+        print("[!]Vocẽ acertou!")
         break
-    if palpite < numerosecreto:
-        print( "Muito baixo.Tente novamente!!")
-
-    elif palpite > numerosecreto:
-        print("Muito alto.Tente novamente!!")
-
     else:
-        print("Você acertou o número!")
+        if user_input < num:
+            print("[x]Você errou, o número secreto é maior! Tente novamente!\n[!]Tentativas restantes:", tentativas -1 - i, "\n")
+        else:
+            print("[x]Você errou, o número secreto é menor! Tente novamente!\n[!]Tentativas restantes:", tentativas -1 - i, "\n")
+
+            
